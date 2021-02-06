@@ -2,33 +2,40 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ProductListComponent } from './product-list.component';
+import { ProductDetailComponent } from './product-detail.component';
+import { ProductCreateComponent } from './product-create.component';
+import { ProductEditComponent } from './product-edit.component';
+import { NotFoundComponent } from './not-found.component';
+import { DataService } from './data.service';
+import { ProductFormComponent } from './product-form.component';
+
+const appsRoutes: Routes = [
+  { path: '', component: ProductListComponent},
+  { path: 'create', component: ProductCreateComponent},
+  { path: 'edit/:id', component: ProductEditComponent},
+  { path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductFormComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    RouterModule.forRoot(appsRoutes)
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

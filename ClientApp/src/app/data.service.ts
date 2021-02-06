@@ -19,7 +19,7 @@ export class DataService {
     }
 
     createProduct(product: Product) {
-        return this.http.post(this.url, product);
+        return this.http.post(this.url, product,{observe: 'response'});
     }
     updateProduct(product: Product) {
 

@@ -1,4 +1,4 @@
-<h1>Model List</h1>
+<!--<h1>Model List</h1>
 <input type="button" value="Add" class="btn btn-default" (click)="add()" />
 <table *ngIf="tableMode; else create" class="table table-striped">
     <thead>
@@ -24,7 +24,6 @@
     </tbody>
 </table>
 
-<!--шаблон для редактирования-->
 <ng-template #edit>
     <td>
         <input type="text" [(ngModel)]="product.name" class="form-control" />
@@ -41,7 +40,6 @@
     </td>
 </ng-template>
 
-<!--шаблон для добавления-->
 <ng-template #create>
     <div class="form-group">
         <label>Model</label>
@@ -59,4 +57,7 @@
         <input type="button" value="Save" (click)="save()" class="btn btn-success" />
         <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
     </div>
-</ng-template>
+</ng-template>-->
+<div class="container body-content">
+  <router-outlet></router-outlet>
+</div>
