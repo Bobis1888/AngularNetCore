@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from './data.service';
 import { Product } from './product';
 
 @Component({
-  templateUrl: './product-detail.component.html',
-  providers: [DataService]
+  providers: [DataService],
+  templateUrl: './product-detail.component.html'
 })
 export class ProductDetailComponent implements OnInit {
 

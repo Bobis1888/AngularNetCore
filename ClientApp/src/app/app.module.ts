@@ -17,6 +17,7 @@ const appsRoutes: Routes = [
   { path: '', component: ProductListComponent},
   { path: 'create', component: ProductCreateComponent},
   { path: 'edit/:id', component: ProductEditComponent},
+  { path: 'detail/:id', component: ProductDetailComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -27,6 +28,7 @@ const appsRoutes: Routes = [
     ProductCreateComponent,
     ProductEditComponent,
     ProductFormComponent,
+    ProductDetailComponent,
     NotFoundComponent
   ],
   imports: [
