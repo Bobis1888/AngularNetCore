@@ -13,7 +13,7 @@ export class ProductDetailComponent implements OnInit {
     product: Product;
     loaded: boolean = false;
 
-    constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
+    constructor(private dataService: DataService, private router: Router , activeRoute: ActivatedRoute) {
       this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
     }
 
@@ -24,6 +24,10 @@ export class ProductDetailComponent implements OnInit {
           this.loaded = true;
         });
       }
+    }
+
+    delete(id: number) {
+      this.dataService.deleteProduct(id).subscribe(data => this.router.navigateByUrl("/"));
     }
 
 }
