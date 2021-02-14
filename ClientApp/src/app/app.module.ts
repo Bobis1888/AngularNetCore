@@ -12,6 +12,8 @@ import { ProductEditComponent } from './product-edit.component';
 import { NotFoundComponent } from './not-found.component';
 import { DataService } from './data.service';
 import { ProductFormComponent } from './product-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const appsRoutes: Routes = [
   { path: '', component: ProductListComponent},
@@ -35,7 +37,9 @@ const appsRoutes: Routes = [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appsRoutes)
+    RouterModule.forRoot(appsRoutes),
+    BrowserAnimationsModule
+
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
