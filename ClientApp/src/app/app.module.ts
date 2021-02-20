@@ -5,40 +5,42 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product-list.component';
-import { ProductDetailComponent } from './product-detail.component';
-import { ProductCreateComponent } from './product-create.component';
-import { ProductEditComponent } from './product-edit.component';
-import { NotFoundComponent } from './not-found.component';
+import { ItemListComponent } from './components/item-list.component';
+import { NotFoundComponent } from './components/not-found.component';
 import { DataService } from './data.service';
-import { ProductFormComponent } from './product-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { ItemBodyComponent } from './components/item-body.component';
 
 
 const appsRoutes: Routes = [
-  { path: '', component: ProductListComponent},
-  { path: 'create', component: ProductCreateComponent},
-  { path: 'edit/:id', component: ProductEditComponent},
-  { path: 'detail/:id', component: ProductDetailComponent},
+  { path: '', component: ItemListComponent },
+  { path: 'body/:postId', component: ItemBodyComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ProductCreateComponent,
-    ProductEditComponent,
-    ProductFormComponent,
-    ProductDetailComponent,
-    NotFoundComponent
+    ItemListComponent,
+    ItemBodyComponent,
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appsRoutes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatToolbarModule
 
   ],
   providers: [DataService],

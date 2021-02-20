@@ -1,0 +1,19 @@
+<mat-card *ngIf="progress" class="preview-box">
+  <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
+</mat-card>
+<mat-tab-group  color="accent">
+<mat-tab *ngFor="let it of items; let index = index" label="{{index+1}}">
+    <mat-card class="preview-box">
+      <mat-card-header>
+        <mat-card-title>{{it.header.toString()}}</mat-card-title>
+        <mat-card-subtitle>{{it.publishDate.toLocaleString()}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div [innerHTML]=it.body></div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" [routerLink]="['/body',it.postId]">Read</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

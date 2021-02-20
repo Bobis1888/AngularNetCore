@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 
 @Component({
@@ -6,4 +7,18 @@ import { Component } from '@angular/core';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
   })
-export class AppComponent {}
+export class AppComponent {
+
+  reference: any;
+  progress = false;
+
+  update() {
+    this.reference.load();
+  }
+
+  onActivate (componentReference) {
+    this.reference = componentReference;
+    this.progress = componentReference.progress;
+ }
+
+}

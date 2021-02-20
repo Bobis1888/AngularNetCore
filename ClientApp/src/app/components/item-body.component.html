@@ -1,0 +1,7 @@
+
+<mat-card *ngIf="progress" class="preview-box">
+  <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
+</mat-card>
+<mat-card *ngIf="item" class="preview-box">
+  <mat-card-content [innerHTML]=item.body></mat-card-content>
+</mat-card>
