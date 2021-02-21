@@ -2,10 +2,11 @@ using AngularDotnetCore.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using AngularDotnetCore.Services;
+
 namespace AngularDotnetCore
 {
     public class Startup
@@ -13,19 +14,23 @@ namespace AngularDotnetCore
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = "Host=localhost;Database=test_angular;Username=angular;Password=angular";
+            
+
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseNpgsql(connectionString);
             });
  
             services.AddControllers();
- 
+            services.AddTransient<HttpClientService>();
+            services.AddTransient<RssService>();
+            services.AddTransient<ItemService>();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
         }
- 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
