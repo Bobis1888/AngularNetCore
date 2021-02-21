@@ -11,6 +11,8 @@ export class ItemListComponent implements OnInit {
 
   items: Item [];
   progress = true;
+  nameSource = 'habr';
+  flow = 'all';
 
   constructor(private dataService: DataService) {}
 
@@ -21,7 +23,7 @@ export class ItemListComponent implements OnInit {
   load() {
     this.progress = true;
     this.items = null;
-    this.dataService.getItems().subscribe((data: Item[]) => {
+    this.dataService.getItems(this.nameSource, this.flow).subscribe((data: Item[]) => {
       this.items = data;
       this.progress = false;
     });

@@ -10,7 +10,6 @@ import { EventEmitter } from 'events';
 export class AppComponent {
 
   reference: any;
-  progress = false;
 
   update() {
     this.reference.load();
@@ -18,7 +17,6 @@ export class AppComponent {
 
   onActivate (componentReference) {
     this.reference = componentReference;
-    this.progress = componentReference.progress;
  }
 
 }

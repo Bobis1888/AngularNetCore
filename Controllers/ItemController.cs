@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AngularDotnetCore.Models;
+using AngularDotnetCore.Services;
 
 namespace AngularDotnetCore.Controllers
 {
@@ -9,61 +9,20 @@ namespace AngularDotnetCore.Controllers
     [Route("api/items")]
     public class ItemController : Controller
     {
-        ApplicationContext db;
-        public ItemController(ApplicationContext context)
+        private ItemService itemService;
+        public ItemController(ItemService itemService)
         {
-            db = context;
-            if(!db.Items.Any())
-            {
-                //add news in base 
-                // db.SaveChanges();
-            }
+            this.itemService = itemService;
         }
-
-        [HttpGet]
-        public IEnumerable<Item> Get()
+        [HttpGet("{nameSource}/{flow}")]
+        public IEnumerable<Item> Get(string nameSource , string flow )
         {
-            return RssService.GetItemsFromRss("habr");
+            return itemService.GetItems(nameSource,flow);
         }
-
-        [HttpGet("{postId}")]
-        public Item Get(string postId)
+        [HttpGet("{nameSource}/{flow}/{postId}")]
+        public Item Get(string nameSource,string flow ,string postId)
         {
-            return RssService.GetItemBody(postId);
-        }
-
-        [HttpPost]
-        public IActionResult Post(Item Item)
-        {
-            if(ModelState.IsValid)
-            {
-                db.Items.Add(Item);
-                db.SaveChanges();
-                return Ok(Item);
-            }
-            return BadRequest(ModelState);
-        }
-        [HttpPut]
-        public IActionResult Put(Item Item)
-        {
-            if(ModelState.IsValid)
-            {
-                db.Update(Item);
-                db.SaveChanges();
-                return Ok(Item);
-            }
-            return BadRequest(ModelState);
-        }
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var Item = db.Items.FirstOrDefault(x => x.Id == id);
-            if(Item != null)
-            {
-                db.Items.Remove(Item);
-                db.SaveChanges();
-            }
-            return Ok(Item);
+            return itemService.GetItem(nameSource,flow,postId);
         }
     }
 }

@@ -1,14 +1,14 @@
 <mat-toolbar>
-  <button mat-raised-button color="accent" [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="update()">Update</button>
     <button mat-menu-item routerLink="/">Home</button>
+    <button mat-menu-item routerLink="/login">Login</button>
+    <button mat-menu-item routerLink="/settings">Settings</button>
+    <button mat-menu-item (click)="update()">Update</button>
   </mat-menu>
   <span class="spacer"></span>
-  <span class="title">HabroReader</span>
+  <span class="title">NWSReader</span>
 </mat-toolbar>
-<!-- TODO  <div *ngIf="progress">  <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
-</div> -->
 <div class="container body-content">
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>

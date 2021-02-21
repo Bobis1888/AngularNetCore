@@ -8,7 +8,6 @@ namespace AngularDotnetCore.Models
         {
             Database.EnsureCreated();
         }
-
         public DbSet<Item> Items {get; set;}
     }
 }

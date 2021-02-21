@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -9,13 +9,17 @@ import { ItemListComponent } from './components/item-list.component';
 import { NotFoundComponent } from './components/not-found.component';
 import { DataService } from './data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldControl, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressBarModule, MatStepperModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 import { ItemBodyComponent } from './components/item-body.component';
+import { SettingsComponent } from './components/settings.component';
+import { LoginComponent } from './components/login.component';
 
 
 const appsRoutes: Routes = [
   { path: '', component: ItemListComponent },
-  { path: 'body/:postId', component: ItemBodyComponent },
+  { path: 'body/:nameSource/:flow/:postId', component: ItemBodyComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -24,6 +28,8 @@ const appsRoutes: Routes = [
     AppComponent,
     ItemListComponent,
     ItemBodyComponent,
+    SettingsComponent,
+    LoginComponent,
     NotFoundComponent,
 
   ],
@@ -33,14 +39,18 @@ const appsRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appsRoutes),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule
 
   ],
   providers: [DataService],
