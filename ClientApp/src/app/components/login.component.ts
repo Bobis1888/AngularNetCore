@@ -10,9 +10,9 @@ import { DataService } from './../data.service';
 export class LoginComponent implements OnInit {
 
   progress = true;
-
+  hide = false;
+  bad = false;
   email = new FormControl('', [Validators.required, Validators.email]);
-
   pass = new FormControl('', [Validators.required]);
 
   getErrorMessage() {
