@@ -1,8 +1,8 @@
 <mat-card *ngIf="progress" class="preview-box">
-  <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
 </mat-card>
 <div class="mat-content" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
-  <mat-tab-group [(selectedIndex)]="selectedTab" color="primary" animationDuration="500ms">
+  <mat-tab-group [(selectedIndex)]="selectedTab" animationDuration="500ms">
   <mat-tab *ngFor="let it of items; let index = index" label="{{index+1}}">
       <mat-card class="preview-box">
         <mat-card-header>
@@ -13,7 +13,7 @@
           <div [innerHTML]=it.body></div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" [routerLink]="['/body',nameSource,flow,it.postId]">Read</button>
+          <button mat-raised-button [routerLink]="['/body',nameSource,flow,it.postId]">Read</button>
         </mat-card-actions>
       </mat-card>
     </mat-tab>

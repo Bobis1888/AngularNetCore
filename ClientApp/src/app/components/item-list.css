@@ -28,3 +28,8 @@ div.login {
 mat-chip {
   max-width: 35%;
 }
+
+.describe {
+  font-size: 20px;
+  color: azure;
+}

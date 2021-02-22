@@ -8,6 +8,11 @@
   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
     <mat-list role="list">
       <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button (click)="update()">
+          <span class="material-icons">cached</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
         <button class="b-icon" mat-icon-button routerLink="/">
           <span class="material-icons">home</span>
         </button>
@@ -25,11 +30,6 @@
       <mat-list-item role="listitem">
         <button class="b-icon" mat-icon-button routerLink="/settings">
           <span class="material-icons">settings</span>
-        </button>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <button class="b-icon" mat-icon-button (click)="update()">
-          <span class="material-icons">cached</span>
         </button>
       </mat-list-item>
       <mat-list-item role="listitem">
