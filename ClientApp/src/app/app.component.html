@@ -1,17 +1,49 @@
-<mat-toolbar>
-  <button mat-raised-button color="primary" [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/">Home</button>
-    <button mat-menu-item routerLink="/login">Login</button>
-    <button mat-menu-item routerLink="/settings">Settings</button>
-    <button mat-menu-item (click)="update()">Update</button>
-  </mat-menu>
-  <span class="spacer"></span>
-  <span class="title">NWSReader</span>
+
+<mat-toolbar class="toolbar">
+  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+  <h1>Reader</h1>
 </mat-toolbar>
-<div class="container body-content">
-  <router-outlet (activate)="onActivate($event)"></router-outlet>
-</div>
-<div class="footer">
-  <h4>bobis1888@gmail.com <br> 2021</h4>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/">
+          <span class="material-icons">home</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/login">
+          <span class="material-icons">login</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/login">
+          <span class="material-icons">logout</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/settings">
+          <span class="material-icons">settings</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button (click)="update()">
+          <span class="material-icons">cached</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/dev">
+          <span class="material-icons">help</span>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <div class="container">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
+  <div class="footer">
+    <h4>bobis1888@gmail.com <br> 2021</h4>
+  </div>
+</mat-sidenav-container>
+

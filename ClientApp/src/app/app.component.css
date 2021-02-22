@@ -11,7 +11,27 @@ div.footer {
   flex: 1 1 auto;
 }
 
-mat-toolbar {
+.mat-drawer-container {
+  background-color: #607D8B;
+}
+
+mat-toolbar , mat-sidenav {
   background-color: #37474F;
   color: azure;
+}
+
+.b-icon {
+  color: azure;
+}
+
+mat-sidenav-container {
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }

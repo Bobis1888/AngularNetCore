@@ -1,19 +1,21 @@
 <mat-card *ngIf="progress" class="preview-box">
   <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
 </mat-card>
-<mat-tab-group color="primary" animationDuration="800ms">
-<mat-tab *ngFor="let it of items; let index = index" label="{{index+1}}">
-    <mat-card class="preview-box">
-      <mat-card-header>
-        <mat-card-title>{{it.header.toString()}}</mat-card-title>
-        <mat-card-subtitle>{{it.publishDate.toLocaleString()}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div [innerHTML]=it.body></div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="['/body',nameSource,flow,it.postId]">Read</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-tab>
-</mat-tab-group>
+<div class="mat-content" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+  <mat-tab-group [(selectedIndex)]="selectedTab" color="primary" animationDuration="500ms">
+  <mat-tab *ngFor="let it of items; let index = index" label="{{index+1}}">
+      <mat-card class="preview-box">
+        <mat-card-header>
+          <mat-card-title>{{it.header.toString()}}</mat-card-title>
+          <mat-card-subtitle>{{it.publishDate.toLocaleString()}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div [innerHTML]=it.body></div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [routerLink]="['/body',nameSource,flow,it.postId]">Read</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>
