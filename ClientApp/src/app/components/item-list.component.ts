@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './../data.service';
+import { DataService } from '../services/data.service';
 import { Item } from '../models/Item';
 
 @Component({
   templateUrl: './item-list.component.html',
   providers: [DataService],
-  styleUrls: ['item-list.css'],
+  styleUrls: ['./components.css'],
  })
 export class ItemListComponent implements OnInit {
 

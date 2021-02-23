@@ -1,0 +1,59 @@
+mat-card-subtitle {
+  color: azure;
+}
+mat-chip {
+  max-width: 35%;
+}
+mat-toolbar , mat-sidenav {
+  background-color: #37474F;
+  color: azure;
+}
+mat-sidenav-container {
+  flex: 1 1 auto;
+  height: 100%;
+}
+h1 {
+  color: azure;
+  font-style: italic;
+}
+div.login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+div.footer {
+  text-align: center;
+  padding: 10px;
+}
+.preview-box {
+  background-color: #37474F;
+  color:azure;
+}
+.login {
+  text-align: center;
+  background-color: darkgrey;
+  margin: 10%;
+  padding: 10px;
+}
+.describe {
+  font-size: 20px;
+  color: azure;
+}
+.container {
+  padding: 10px;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.mat-drawer-container {
+  background-color: #607D8B;
+}
+.b-icon {
+  color: azure;
+}
+.toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}

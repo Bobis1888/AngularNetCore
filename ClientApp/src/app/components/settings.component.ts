@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './../data.service';
+import { DataService } from '../services/data.service';
 
 export interface ChipColor {
   name: string;
@@ -9,7 +9,7 @@ export interface ChipColor {
 @Component({
   templateUrl: './settings.component.html',
   providers: [DataService],
-  styleUrls: ['./item-list.css']
+  styleUrls: ['./components.css']
  })
 export class SettingsComponent implements OnInit {
 

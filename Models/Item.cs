@@ -12,7 +12,14 @@ namespace AngularDotnetCore.Models
         {
             get
             { 
-                return Url.Split("post")[1].Replace("/","");
+                if(Url.Contains("habr"))
+                {
+                    return Url.Split("post")[1].Replace("/",""); //habr
+                }
+                else
+                {
+                    return Url;
+                }
             }
         }
 

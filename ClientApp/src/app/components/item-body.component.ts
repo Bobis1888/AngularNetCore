@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './../data.service';
+import { DataService } from '../services/data.service';
 import { Item } from '../models/Item';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './item-body.component.html',
   providers: [DataService],
-  styleUrls: ['./item-list.css']
+  styleUrls: ['./components.css']
  })
 export class ItemBodyComponent implements OnInit {
 

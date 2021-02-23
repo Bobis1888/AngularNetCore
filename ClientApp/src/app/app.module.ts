@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { ItemListComponent } from './components/item-list.component';
 import { NotFoundComponent } from './components/not-found.component';
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemBodyComponent } from './components/item-body.component';
 import { SettingsComponent } from './components/settings.component';

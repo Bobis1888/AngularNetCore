@@ -1,31 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { DataService } from './../data.service';
+import { User } from '../models/User';
+import { AccountService } from '../services/account.service';
 
 @Component({
   templateUrl: './login.component.html',
-  providers: [DataService],
-  styleUrls: ['./item-list.css']
+  providers: [AccountService],
+  styleUrls: ['./components.css']
  })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  progress = true;
+  constructor(private accountService: AccountService) {}
+
+  user = new User();
   hide = false;
   bad = false;
   email = new FormControl('', [Validators.required, Validators.email]);
+  // TODO add pass validate
   pass = new FormControl('', [Validators.required]);
 
   getErrorMessage() {
     if (this.email.hasError('required') || this.pass.hasError('required')) {
       return 'You must enter a value';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  ngOnInit() {
-    this.load();
+  login() {
+    if (this.email.valid && this.pass.valid) {
+      this.user.id = 0;
+      console.log('LOG BLEAT');
+      this.accountService.login(this.user).subscribe((aUser: User) => {
+        console.log(this.user);
+        this.user.id = aUser.id;
+      });
+    }
   }
 
-  load() {}
+  reg(): void {
+
+  }
 }

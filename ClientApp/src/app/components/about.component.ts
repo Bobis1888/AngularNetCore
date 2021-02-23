@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './about.component.html',
-  styleUrls: ['./item-list.css']
+  styleUrls: ['./components.css']
  })
 export class AboutComponent {
 

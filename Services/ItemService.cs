@@ -16,7 +16,7 @@ namespace AngularDotnetCore.Services
             this.clientService = clientService;
             this.rssService = rssService;
         }
-        private string determiningUrl(string nameSource,string flow)
+        private string DeterminingUrl(string nameSource,string flow)
         {
             var url = "";
             if(nameSource.Equals("habr"))
@@ -26,13 +26,13 @@ namespace AngularDotnetCore.Services
                 {
                     flow = "all/all";
                 }
-                url = $"https://habr.com/en/rss/{flow}/?fl=ru%2Cen";
+                url = $"https://habr.com/en/rss/{flow}/?fl=en";
             }
             return url;
         }
         public IEnumerable<Item> GetItems(string nameSource,string flow)
         {
-            var url = determiningUrl(nameSource,flow);
+            var url = DeterminingUrl(nameSource,flow);
             var posts = rssService.GetPostsFromRss(url);
             habrItems = new List<Item>();
             foreach (var post in posts)
@@ -58,7 +58,7 @@ namespace AngularDotnetCore.Services
             else
             {
                 return new Item(){
-                    Header = $"Sorry, this post was not found or something went wrong.\nServer say => post url : {postId}"
+                    Header = $"Sorry, this post was not found or something went wrong.\nPost url : {postId}"
                 };
             }
             var item = currentItems.Where(i => i.PostId.Equals(postId)).FirstOrDefault();
