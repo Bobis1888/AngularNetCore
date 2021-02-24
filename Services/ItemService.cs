@@ -24,9 +24,9 @@ namespace AngularDotnetCore.Services
                 //TODO check flow
                 if(flow.Equals("all") || flow == null)
                 {
-                    flow = "all/all";
+                    flow = "hub/net/all";
                 }
-                url = $"https://habr.com/en/rss/{flow}/?fl=en";
+                url = $"https://habr.com/ru/rss/{flow}/?fl=ru%2Cen";
             }
             return url;
         }
