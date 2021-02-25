@@ -16,13 +16,22 @@
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput [(ngModel)]="user.password" [type]="hide ? 'text' : 'password'" [formControl]="pass" required>
+      <input matInput [(ngModel)]="user.password" [type]="hide ? 'text' : 'password'" [formControl]="pass[0]" required>
       <mat-error *ngIf="pass.invalid">{{getErrorMessage()}}</mat-error>
       <button class="hide-pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </button>
     </mat-form-field>
   </div>
-  <button mat-raised-button (click)="login()">Login</button>
-  <button mat-raised-button routerLink="/registration">Registration</button>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm password</mat-label>
+      <input matInput [(ngModel)]="user.password" [type]="hide ? 'text' : 'password'" [formControl]="pass[1]" required>
+      <mat-error *ngIf="pass != passConfirm">Password nod confirmed</mat-error>
+      <button class="hide-pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="reg()">Registration</button>
 </mat-card>

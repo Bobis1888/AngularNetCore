@@ -35,10 +35,7 @@ namespace AngularDotnetCore
             services.AddTransient<ItemService>();
             services.AddTransient<AccountService>();
             
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/login");
-            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.AddSpaStaticFiles(configuration =>
             {

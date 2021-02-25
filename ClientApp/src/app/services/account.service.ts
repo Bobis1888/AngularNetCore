@@ -9,11 +9,14 @@ export class AccountService {
 
     private url = '/api/account';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) {}
+
+    login(user: User): Observable<User> {
+      return this.http.post<User>(this.url + '/login', user).pipe(catchError(this.handleError));
     }
 
-    login(user: User) {
-      return this.http.post(this.url, user).pipe(catchError(this.handleError));
+    reg(user: User): Observable<User> {
+      return this.http.post<User>(this.url + '/registration', user).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -27,8 +30,7 @@ export class AccountService {
           `Backend returned code ${error.status}, ` +
           `body was: ${error.error}`);
       }
-      // Return an observable with a user-facing error message.
       return throwError(
-        'Something bad happened; please try again later.');
+        `${error.error}`);
     }
 }

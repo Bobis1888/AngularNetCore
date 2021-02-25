@@ -16,8 +16,25 @@ namespace AngularDotnetCore.Services
             this.appContext = appContext;
         }
         private ApplicationContext appContext;
-        public async Task<User> FindUser(User aUser) {
-            return await appContext.Users.FirstOrDefaultAsync(user => user.Email == aUser.Email && user.Password == aUser.Password);
+        public async Task<User> FindUser(User aUser) 
+        {
+            return await appContext.Users.FirstOrDefaultAsync(user => user.Email.Equals(aUser.Email) && user.Password.Equals(aUser.Password));
+        }
+        public async Task<User> CheckEmail(User aUser)
+        {
+            return await appContext.Users.FirstOrDefaultAsync(user => user.Email.Equals(aUser.Email));
+        }
+        public async Task<User> CreateUser(User aUser) 
+        {
+            appContext.Users.Add(new User()
+            {
+                Password = aUser.Password,
+                Email = aUser.Email,
+                Trusted = true
+            });
+            aUser.Trusted = true;
+            await appContext.SaveChangesAsync();
+            return aUser;
         }
     }
 }

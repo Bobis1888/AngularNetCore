@@ -14,6 +14,7 @@ import { SettingsComponent } from './components/settings.component';
 import { LoginComponent } from './components/login.component';
 import { MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatSidenavModule, MatStepperModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 import { AboutComponent } from './components/about.component';
+import { RegistrationComponent } from './components/registration.component';
 
 
 const appsRoutes: Routes = [
@@ -21,6 +22,7 @@ const appsRoutes: Routes = [
   { path: 'body/:nameSource/:flow/:postId', component: ItemBodyComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
   { path: 'dev', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
 ];
@@ -32,6 +34,7 @@ const appsRoutes: Routes = [
     ItemBodyComponent,
     SettingsComponent,
     LoginComponent,
+    RegistrationComponent,
     AboutComponent,
     NotFoundComponent,
 
