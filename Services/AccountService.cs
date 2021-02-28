@@ -1,11 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using AngularDotnetCore.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AngularDotnetCore.Services
 {

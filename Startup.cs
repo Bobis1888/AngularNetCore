@@ -34,8 +34,12 @@ namespace AngularDotnetCore
             services.AddTransient<RssService>();
             services.AddTransient<ItemService>();
             services.AddTransient<AccountService>();
-            
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/api/account/nonauth");
+                options.Cookie.Name = "auth";
+            });
 
             services.AddSpaStaticFiles(configuration =>
             {

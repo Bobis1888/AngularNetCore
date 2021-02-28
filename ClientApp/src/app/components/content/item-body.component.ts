@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
-import { Item } from '../models/Item';
+import { DataService } from '../../services/data.service';
+import { Item } from '../../models/Item';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './item-body.component.html',
   providers: [DataService],
-  styleUrls: ['./components.css']
+  styleUrls: ['../components.css']
  })
 export class ItemBodyComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class ItemBodyComponent implements OnInit {
   load() {
     this.progress = true;
     this.item = null;
-    this.dataService.getItem(this.nameSource, this.flow, this.postID).subscribe((data: Item) => {
+    this.dataService.getItem(this.nameSource, this.flow, this.postID).toPromise().then((data: Item) => {
       this.item = data;
       this.progress = false;
     });

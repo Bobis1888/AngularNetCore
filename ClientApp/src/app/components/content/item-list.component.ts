@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
-import { Item } from '../models/Item';
+import { DataService } from '../../services/data.service';
+import { Item } from '../../models/Item';
 
 @Component({
   templateUrl: './item-list.component.html',
   providers: [DataService],
-  styleUrls: ['./components.css'],
+  styleUrls: ['../components.css'],
  })
 export class ItemListComponent implements OnInit {
 
@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
   load() {
     this.progress = true;
     this.items = null;
-    this.dataService.getItems(this.nameSource, this.flow).subscribe((data: Item[]) => {
+    this.dataService.getItems(this.nameSource, this.flow).toPromise().then((data: Item[]) => {
       this.items = data;
       this.progress = false;
     });

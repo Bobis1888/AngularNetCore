@@ -1,7 +1,0 @@
-{
-    "cSpell.words": [
-        "Npgsql"
-    ],
-    "appService.preDeployTask": "publish-release",
-    "appService.deploySubpath": "bin/Release/netcoreapp3.1/publish"
-}

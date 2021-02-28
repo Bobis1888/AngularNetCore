@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { User } from '../models/User';
-import { AccountService } from '../services/account.service';
+import { Router } from '@angular/router';
+import { User } from '../../models/User';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   templateUrl: './registration.component.html',
   providers: [AccountService],
-  styleUrls: ['./components.css']
+  styleUrls: ['../components.css']
  })
 export class RegistrationComponent {
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,private router:Router) {
+    if (accountService.getCurrentUser().trusted) {
+      this.router.navigate(['info'])
+    }
+  }
 
   user = new User();
   hide = false;
@@ -28,9 +33,7 @@ export class RegistrationComponent {
 
   reg() {
     if (this.email.valid && this.pass[0].valid && this.pass[1].valid) {
-      this.accountService.reg(this.user).subscribe((aUser: User) => {
-        this.user = aUser;
-      });
+      this.accountService.reg(this.user);
     }
   }
 }

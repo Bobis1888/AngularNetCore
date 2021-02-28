@@ -8,33 +8,28 @@
   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
     <mat-list role="list">
       <mat-list-item role="listitem">
-        <button class="b-icon" mat-icon-button (click)="update()">
-          <span class="material-icons">cached</span>
-        </button>
-      </mat-list-item>
-      <mat-list-item role="listitem">
         <button class="b-icon" mat-icon-button routerLink="/">
           <span class="material-icons">home</span>
         </button>
       </mat-list-item>
       <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/dev">
+          <span class="material-icons">help</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem" *ngIf="!getCurrentAccount().trusted">
         <button class="b-icon" mat-icon-button routerLink="/login">
           <span class="material-icons">login</span>
         </button>
       </mat-list-item>
       <mat-list-item role="listitem">
-        <button class="b-icon" mat-icon-button routerLink="/login">
+        <button class="b-icon" mat-icon-button routerLink="/info" *ngIf="getCurrentAccount().trusted">
+          <span class="material-icons">account_circle</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button (click)="logout()" *ngIf="getCurrentAccount().trusted">
           <span class="material-icons">logout</span>
-        </button>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <button class="b-icon" mat-icon-button routerLink="/settings">
-          <span class="material-icons">settings</span>
-        </button>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <button class="b-icon" mat-icon-button routerLink="/dev">
-          <span class="material-icons">help</span>
         </button>
       </mat-list-item>
     </mat-list>

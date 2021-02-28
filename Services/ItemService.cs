@@ -21,10 +21,22 @@ namespace AngularDotnetCore.Services
             var url = "";
             if(nameSource.Equals("habr"))
             {
-                //TODO check flow
-                if(flow.Equals("all") || flow == null)
+                //MOCK
+                //TODO determining flows
+                switch (flow)
                 {
-                    flow = "all/all";
+                    case "all" : flow = "all/all";
+                        break;
+                    case "develop" : flow = "develop/all";
+                        break;
+                    case "admin" : flow = "admin/all";
+                        break;
+                    case "best" : flow = "best/weekly";
+                        break;
+                    case "develop&top" : flow = "develop/top/weekly";
+                        break;
+                    case "admin&top" : flow = "admin/top/weekly";
+                        break;
                 }
                 url = $"https://habr.com/ru/rss/{flow}/?fl=ru%2Cen";
             }
@@ -61,13 +73,13 @@ namespace AngularDotnetCore.Services
                     Header = $"Sorry, this post was not found or something went wrong.\nPost url : {postId}"
                 };
             }
-            var item = currentItems.Where(i => i.PostId.Equals(postId)).FirstOrDefault();
+            var item = currentItems.FirstOrDefault(i => i.PostId.Equals(postId));
             var postHtml = clientService.GetPageFromWeb(item.Url).Result;
-            item.Body = getBodyPost(postHtml);
+            item.Body = GetBodyPost(postHtml);
             return item;
         }
         //TODO write a handler html
-        private string getBodyPost(string postHtml)
+        private string GetBodyPost(string postHtml)
         {
             var page = new HtmlDocument();
             page.LoadHtml(postHtml);

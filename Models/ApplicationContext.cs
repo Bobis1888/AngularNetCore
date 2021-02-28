@@ -9,5 +9,7 @@ namespace AngularDotnetCore.Models
             Database.EnsureCreated();
         }
         public DbSet<User> Users {get; set;}
+        public DbSet<Settings> Settings { get; set; }
+
     }
 }

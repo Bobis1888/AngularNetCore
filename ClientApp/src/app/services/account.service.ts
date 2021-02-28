@@ -1,22 +1,48 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { ASPResponse } from '../models/ASPResponse';
 import { User } from '../models/User';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError,tap } from 'rxjs/operators';
+import {Settings} from "../models/Settings";
 
 @Injectable()
 export class AccountService {
 
     private url = '/api/account';
+    static currentUser = new User();
 
     constructor(private http: HttpClient) {}
 
-    login(user: User): Observable<User> {
-      return this.http.post<User>(this.url + '/login', user).pipe(catchError(this.handleError));
+    public getCurrentUser() {
+      return AccountService.currentUser;
     }
 
-    reg(user: User): Observable<User> {
-      return this.http.post<User>(this.url + '/registration', user).pipe(catchError(this.handleError));
+    login(user: User): Promise<User> {
+      return this._post(user,'login')
+        .then(resp => AccountService.currentUser = resp.user);
+    }
+
+    reg(user: User): Promise<User> {
+      return this._post(user,'registration')
+        .then(resp => AccountService.currentUser = resp.user);
+    }
+
+    info(): Promise<Settings> {
+      return this._post(AccountService.currentUser,'info')
+        .then(resp => AccountService.currentUser.settings = resp.settings)
+    }
+
+    private _post(user: User,url: string): Promise<ASPResponse> {
+      return this.http
+        .post<ASPResponse>(this.url + '/' + url, user)
+        .pipe(catchError(this.handleError)).toPromise()
+        .then(response => response);
+    }
+
+    logout() {
+      AccountService.currentUser = new User();
+      this.http.get(this.url + '/logout').toPromise();
     }
 
     private handleError(error: HttpErrorResponse) {

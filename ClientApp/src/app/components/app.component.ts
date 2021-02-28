@@ -1,11 +1,14 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import {User} from "../models/User";
+import {AccountService} from "../services/account.service";
 
 
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls: ['./components.css']
+    styleUrls: ['./components.css'],
+    providers: [AccountService]
   })
 export class AppComponent {
 
@@ -13,7 +16,7 @@ export class AppComponent {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private accountService: AccountService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -29,6 +32,14 @@ export class AppComponent {
 
   onActivate (componentReference) {
     this.reference = componentReference;
+  }
+
+  getCurrentAccount(): User {
+    return AccountService.currentUser;
+  }
+
+  logout() {
+    this.accountService.logout();
   }
 
 }
