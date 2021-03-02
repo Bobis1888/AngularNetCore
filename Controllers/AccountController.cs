@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using AngularDotnetCore.Models;
-using AngularDotnetCore.Services;
+using AngularNetCore.Models;
+using AngularNetCore.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
-namespace AngularDotnetCore.Controllers
+namespace AngularNetCore.Controllers
 {
     [ApiController]
     [Route("api/account")]

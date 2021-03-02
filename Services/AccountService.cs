@@ -1,9 +1,7 @@
-using System;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using AngularDotnetCore.Models;
+using AngularNetCore.Models;
 
-namespace AngularDotnetCore.Services
+namespace AngularNetCore.Services
 {
     public class AccountService
     {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace AngularDotnetCore.Models
+namespace AngularNetCore.Models
 {
     public class ApplicationContext : DbContext
     {

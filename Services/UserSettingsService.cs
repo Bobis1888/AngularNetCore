@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using AngularDotnetCore.Models;
+using AngularNetCore.Models;
 
-namespace AngularDotnetCore.Services
+namespace AngularNetCore.Services
 {
     //TODO real service
     public class UserSettingsService

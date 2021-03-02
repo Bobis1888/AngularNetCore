@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using AngularDotnetCore.Models;
-using AngularDotnetCore.Services;
+using AngularNetCore.Models;
+using AngularNetCore.Services;
 
-namespace AngularDotnetCore.Controllers
+namespace AngularNetCore.Controllers
 {
     [ApiController]
     [Route("api/items")]

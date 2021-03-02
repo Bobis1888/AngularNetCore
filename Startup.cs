@@ -1,16 +1,16 @@
 using System;
-using AngularDotnetCore.Models;
+using AngularNetCore.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using AngularDotnetCore.Services;
+using AngularNetCore.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace AngularDotnetCore
+namespace AngularNetCore
 {
     public class Startup
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AngularDotnetCore.Models
+namespace AngularNetCore.Models
 {
     public class User
     {

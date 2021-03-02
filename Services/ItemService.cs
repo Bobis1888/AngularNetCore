@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using AngularDotnetCore.Models;
+using AngularNetCore.Models;
 using HtmlAgilityPack;
 
-namespace AngularDotnetCore.Services
+namespace AngularNetCore.Services
 {
     public class ItemService
     {

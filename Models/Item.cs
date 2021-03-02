@@ -1,5 +1,5 @@
 using System;
-namespace AngularDotnetCore.Models
+namespace AngularNetCore.Models
 {
     public class Item
     {

@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AngularDotnetCore.Services
+namespace AngularNetCore.Services
 {
     //TODO use api
     public class HttpClientService
