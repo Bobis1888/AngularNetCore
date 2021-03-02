@@ -1,4 +1,7 @@
-<mat-card class="login">
+<mat-card *ngIf="progress" class="preview-box">
+  <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
+</mat-card>
+<mat-card class="login" *ngIf="!progress">
   <div *ngIf="user.trusted">
     <h1>Welcome {{user.email}}</h1>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree login">

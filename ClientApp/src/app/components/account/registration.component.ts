@@ -33,7 +33,15 @@ export class RegistrationComponent {
 
   reg() {
     if (this.email.valid && this.pass[0].valid && this.pass[1].valid) {
-      this.accountService.reg(this.user);
+      this.accountService.reg(this.user).then((user:User) => {
+        if (!user.trusted) {
+          this.email.setValue('');
+          this.pass[0].setValue('');
+          this.pass[1].setValue('');
+        }else {
+          this.router.navigate(['info']);
+        }
+      });
     }
   }
 }

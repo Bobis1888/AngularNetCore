@@ -13,9 +13,8 @@ import {ASPResponse} from "../../models/ASPResponse";
 export class LoginComponent {
 
   constructor(private accountService: AccountService,private router: Router) {
-
   }
-
+  progress = false;
   user = new User();
   hide = false;
   bad = false;
@@ -32,6 +31,7 @@ export class LoginComponent {
 
   login() {
     if (this.email.valid && this.pass.valid) {
+      this.progress = true;
       this.accountService.login(this.user).then((user:User) => {
         if (!user.trusted) {
           this.email.setValue('');
@@ -40,6 +40,7 @@ export class LoginComponent {
           this.router.navigate(['info']);
         }
       });
+      this.progress = false;
     }
   }
 }

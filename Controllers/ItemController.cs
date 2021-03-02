@@ -9,20 +9,20 @@ namespace AngularDotnetCore.Controllers
     [Route("api/items")]
     public class ItemController : Controller
     {
-        private ItemService itemService;
+        private ItemService ItemService;
         public ItemController(ItemService itemService)
         {
-            this.itemService = itemService;
+            this.ItemService = itemService;
         }
         [HttpGet("{nameSource}/{flow}")]
         public IEnumerable<Item> Get(string nameSource , string flow )
         {
-            return itemService.GetItems(nameSource,flow);
+            return ItemService.GetItems(nameSource,flow);
         }
         [HttpGet("{nameSource}/{flow}/{postId}")]
         public Item Get(string nameSource,string flow ,string postId)
         {
-            return itemService.GetItem(nameSource,flow,postId);
+            return ItemService.GetItem(nameSource,flow,postId);
         }
     }
 }

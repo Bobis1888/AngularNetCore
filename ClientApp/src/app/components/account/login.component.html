@@ -1,4 +1,7 @@
 <mat-card class="login">
+  <mat-card *ngIf="progress" class="preview-box">
+    <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
+  </mat-card>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
@@ -21,4 +24,8 @@
   </div>
   <button mat-raised-button (click)="login()">Login</button>
   <button mat-raised-button routerLink="/registration">Registration</button>
+  <div>
+    <div>login: test@test</div>
+    <div>pass: test</div>
+  </div>
 </mat-card>

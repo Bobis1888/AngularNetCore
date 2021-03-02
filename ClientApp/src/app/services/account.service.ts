@@ -33,6 +33,10 @@ export class AccountService {
         .then(resp => AccountService.currentUser.settings = resp.settings)
     }
 
+    check(): Promise<User> {
+      return this.http.get(this.url + '/check').toPromise().then((response: ASPResponse) => response.user);
+    }
+
     private _post(user: User,url: string): Promise<ASPResponse> {
       return this.http
         .post<ASPResponse>(this.url + '/' + url, user)

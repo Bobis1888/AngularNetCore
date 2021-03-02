@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {User} from "../models/User";
 import {AccountService} from "../services/account.service";
 
@@ -10,7 +10,7 @@ import {AccountService} from "../services/account.service";
     styleUrls: ['./components.css'],
     providers: [AccountService]
   })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   reference: any;
   mobileQuery: MediaQueryList;
@@ -22,12 +22,12 @@ export class AppComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  ngOnInit() {
+    this.accountService.check().then(user => AccountService.currentUser = user);
   }
 
-  update() {
-    this.reference.load();
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   onActivate (componentReference) {

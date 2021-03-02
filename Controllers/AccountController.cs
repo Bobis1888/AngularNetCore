@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using AngularDotnetCore.Models;
 using AngularDotnetCore.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace AngularDotnetCore.Controllers
 {
@@ -29,6 +31,7 @@ namespace AngularDotnetCore.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             aUser = Authenticate(aUser).Result;
+            CacheUser(aUser);
             return Ok(new ASPResponse{User = aUser});
         }
         [HttpPost]
@@ -37,13 +40,20 @@ namespace AngularDotnetCore.Controllers
         // TODO [ValidateAntiForgeryToken]
         public IActionResult Registration(User aUser)
         {
-            if(ModelState.IsValid)
-            {
-                aUser = CreateUser(aUser).Result;
-                return Ok(new ASPResponse{User = aUser});
-            }
-            return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            aUser = CreateUser(aUser).Result;
+            aUser = Authenticate(aUser).Result;
+            CacheUser(aUser);
+            return Ok(new ASPResponse{User = aUser});
         }
+
+        [HttpGet("check")]
+        [AllowAnonymous]
+        public IActionResult Check()
+        {
+            return Ok(new ASPResponse{User = CheckUserInCache()});
+        }
+
         [HttpPost]
         [Route("info")]
         [Authorize]
@@ -88,6 +98,7 @@ namespace AngularDotnetCore.Controllers
             {
                 aUser = await accountService.CreateUser(aUser);
                 aUser.Password = "******";
+                aUser.Trusted = true;
             }
             else
             {
@@ -97,6 +108,7 @@ namespace AngularDotnetCore.Controllers
         }
         private async Task Exit()
         {
+            ClearCacheUser();
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
         // TODO user settings
@@ -104,6 +116,27 @@ namespace AngularDotnetCore.Controllers
         {
             var uSettings = new UserSettingsService();
             return uSettings.GetSettings(email);
+        }
+        private void CacheUser(User aUser)
+        {
+            HttpContext.Session.SetString("email",aUser.Email);
+            HttpContext.Session.SetString("trusted",true.ToString());
+        }
+
+        private void ClearCacheUser()
+        {
+            HttpContext.Session.Clear();
+        }
+
+        private User CheckUserInCache()
+        {
+            var user = new User();
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("email")))
+            {
+                user.Email = HttpContext.Session.GetString("email");
+                user.Trusted = bool.Parse(HttpContext.Session.GetString("trusted"));
+            }
+            return user;
         }
     }
 }

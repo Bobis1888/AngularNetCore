@@ -52,6 +52,7 @@ export class AccountInfoComponent implements OnInit{
       value.subFlows.forEach((fl,index) => arraySubFLows[index] = new Node(fl));
       this.dataSource.data[index] = new Node(value.name,arraySubFLows);
     }));
+    this.progress = false;
   }
 
 }

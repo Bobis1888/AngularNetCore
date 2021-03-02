@@ -1,3 +1,4 @@
+using System;
 using AngularDotnetCore.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,11 +25,17 @@ namespace AngularDotnetCore
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            // string connectionString = "Host=localhost;Database=test_angular;Username=angular;Password=angular";
-            // string connectionString = "Host=ec2-34-230-167-186.compute-1.amazonaws.com;Database=d3dboka8cnqkpp;Username=wwjcesiaclywuw;Password=1c5f15cfdbf12e40bbfa3439a3ca4fb33e5e767aef1971e0dbfd293ad7156617;SslMode=Require;TrustServerCertificate=true";
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString));
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "session";
+                options.IdleTimeout = TimeSpan.FromSeconds(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllers();
             services.AddTransient<HttpClientService>();
             services.AddTransient<RssService>();
@@ -62,7 +69,8 @@ namespace AngularDotnetCore
 
             app.UseAuthentication();
             app.UseAuthorization();
- 
+            app.UseSession();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
