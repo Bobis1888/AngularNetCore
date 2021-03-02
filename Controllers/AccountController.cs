@@ -119,6 +119,7 @@ namespace AngularDotnetCore.Controllers
         }
         private void CacheUser(User aUser)
         {
+            if (string.IsNullOrEmpty(aUser.Email)) return;
             HttpContext.Session.SetString("email",aUser.Email);
             HttpContext.Session.SetString("trusted",true.ToString());
         }

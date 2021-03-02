@@ -32,7 +32,7 @@ namespace AngularDotnetCore
             services.AddSession(options =>
             {
                 options.Cookie.Name = "session";
-                options.IdleTimeout = TimeSpan.FromSeconds(30);
+                options.IdleTimeout = TimeSpan.FromHours(2);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
