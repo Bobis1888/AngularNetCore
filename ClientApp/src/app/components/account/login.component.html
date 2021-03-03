@@ -3,7 +3,7 @@
     <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
   </mat-card>
   <div class="input">
-    <mat-form-field appearance="outline" class="text">
+    <mat-form-field appearance="outline" class="text input">
       <mat-label>Email</mat-label>
       <input matInput [(ngModel)]="user.email" placeholder="pat@example.com" [formControl]="email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -13,7 +13,7 @@
     </mat-form-field>
   </div>
   <div class="input">
-    <mat-form-field appearance="outline" class="text">
+    <mat-form-field appearance="outline" class="text input">
       <mat-label>Password</mat-label>
       <input matInput [(ngModel)]="user.password" [type]="hide ? 'text' : 'password'" [formControl]="pass" required>
       <mat-error *ngIf="pass.invalid">{{getErrorMessage()}}</mat-error>

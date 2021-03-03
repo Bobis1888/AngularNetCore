@@ -1,13 +1,13 @@
 <mat-card class="dark-container _container">
   <h3>Please enter your email and feedback.<br>Thank you.</h3>
   <form>
-    <mat-form-field class="text" appearance="outline">
+    <mat-form-field class="text input" appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput [(ngModel)]="email" placeholder="pat@example.com" [formControl]="emailForm" required>
       <mat-error *ngIf="emailForm.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="text" appearance="outline">
+    <mat-form-field class="text input" appearance="outline">
       <mat-label>Text</mat-label>
       <textarea matInput [(ngModel)]="text" [formControl]="textForm" required cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="10" placeholder="Text ..."></textarea>
