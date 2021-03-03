@@ -16,6 +16,7 @@ import { AboutComponent } from './components/about.component';
 import { RegistrationComponent } from './components/account/registration.component';
 import {AccountInfoComponent} from "./components/account/account-info.component";
 import {TestComponent} from "./components/content/test.component";
+import {FeedBackComponent} from "./components/feedback/feedback.component";
 
 
 const appsRoutes: Routes = [
@@ -25,21 +26,23 @@ const appsRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'dev', component: AboutComponent },
   { path: 'info', component: AccountInfoComponent },
+  { path: 'feedback', component: FeedBackComponent },
   { path: 'test', component: TestComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
+    RegistrationComponent,
+    AccountInfoComponent,
     ItemListComponent,
     ItemBodyComponent,
-    LoginComponent,
-    RegistrationComponent,
-    AboutComponent,
-    AccountInfoComponent,
+    FeedBackComponent,
     NotFoundComponent,
-    TestComponent
+    LoginComponent,
+    AboutComponent,
+    TestComponent,
+    AppComponent
 
   ],
   imports: [

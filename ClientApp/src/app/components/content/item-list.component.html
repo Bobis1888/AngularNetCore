@@ -1,10 +1,10 @@
-<mat-card *ngIf="progress" class="preview-box">
+<mat-card *ngIf="progress" class="dark-container">
   <mat-progress-bar mode="buffer"></mat-progress-bar>
 </mat-card>
-<div class="mat-content" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+<div class="mat-content container" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
   <mat-tab-group [(selectedIndex)]="selectedTab" animationDuration="500ms">
   <mat-tab *ngFor="let it of items; let index = index" label="{{index+1}}">
-      <mat-card class="preview-box">
+      <mat-card class="dark-container">
         <mat-card-header>
           <mat-card-title>{{it.header.toString()}}</mat-card-title>
           <mat-card-subtitle>{{it.publishDate.toLocaleString()}}</mat-card-subtitle>

@@ -14,12 +14,17 @@
       </mat-list-item>
       <mat-list-item role="listitem">
         <button class="b-icon" mat-icon-button routerLink="/dev">
-          <span class="material-icons">help</span>
+          <span class="material-icons">help_center</span>
         </button>
       </mat-list-item>
       <mat-list-item role="listitem" *ngIf="!getCurrentAccount().trusted">
         <button class="b-icon" mat-icon-button routerLink="/login">
           <span class="material-icons">login</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button class="b-icon" mat-icon-button routerLink="/feedback">
+          <span class="material-icons">feedback</span>
         </button>
       </mat-list-item>
       <mat-list-item role="listitem">

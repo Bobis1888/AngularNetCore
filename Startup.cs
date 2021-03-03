@@ -27,7 +27,7 @@ namespace AngularNetCore
             });
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString));
-
+			
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
